@@ -1,0 +1,208 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Reset  */
+:root {
+	--margin-1:10px;
+	--margin-2:10px;
+}
+* {
+	box-sizing:border-box;
+  }
+  
+  #grid-floats {
+	display:flex;
+	justify-content:space-around;
+	flex-wrap: wrap;
+  }
+
+h3 {
+	text-align: center;
+	font: 16px tahoma;
+  }
+  
+  h1 {
+	text-align: center;
+	font:bold 32px tahoma;
+	
+  }
+  h2 {
+	text-align: center;
+	font:bold 24px tahoma;
+	  }
+	p {
+		text-align: justify;
+	}  
+  
+  .grid-item {
+
+   
+	
+	border:1px solid;
+	margin-bottom:20px;
+
+
+  }
+  
+  
+  img {
+	width:100%;
+	height:300px;
+    background-size:cover;
+	background-position: center;
+	object-fit: cover;
+	object-position: center;
+	
+	
+	
+   }
+/* biz eğer li leri yanyana sıralıyorsak 1.li yi söylerken li lerin first child ı 
+şeklinde birinci elemanı tanımlayarak özelliklerini vermeliyim */
+ li:first-child {
+   
+   flex:0 0 calc(50% -  var(--margin-1));
+   margin-left:var(--margin-1);  
+   }
+
+   li:nth-child(n+2):nth-child(-n+3) { /* 2 ve 3. elemanlar  */
+	
+	flex:0 0 calc(25% - var(--margin-1));
+	margin-left:var(--margin-1);    
+   }
+section {
+	
+	padding-right:var(--margin-1);
+
+}
+
+  /* Genel olarak mantığımıza bakacak olursak mesela 1.kutu 50% genişliğinde
+  2 ve 3. kutular ise 25% genişliğinde önce display:flex verdik justify-content flex evenly verdik
+  daha sonra kutularımız sonrasında da oluğu için flex-wrap wrap diyerek sığmayan kutunun 
+  aşağı atlamasını sağlarız ve biz aralarda eşit boşluk olacak şekilde 
+  boşluk veririz Bunu mantıken ya 2 ve 3.kutuların margin right larına 10 px
+  veririz bunu farklı margin değerleri ile de deneyebiliriz sonra da en dıştaki div e 
+  padding right ve padding left 10 ar px değer veririz şimdi bundan sonra yapmamız gereken
+  arlara verdiğimiz değerleri widht değerlerinden çıkarmak ki çünkü bunu yaparsak
+  kutulardan biri aşağı düşmez yoksa o satır a sonradan verdiğimiz boşluklar fazla
+   gelecek o yüzden  verdiğmiz boşlukları düşeceğiz.Ancak burdaki kritik noktaaaa
+   1-en dış div e padding verdiğmiz zaman aynı zamanda da border-box vermişsek o zaman ondan 
+   boşluk düşmeye gerek kalmaz ancak border-box vermezsek o zaman düşmemiz paddingleri de düşmemiz gerekecek.Ama biz eğer en sağ ve en sola verdiğimiz boşluğu da yine
+   margin değerleri ile yani 1.kutunun margin leftine 3.kutunun da margin right ına değer vererek 
+   halledeceksek o zaman işte o verdiğmiz margin değerlerini de düşmeliyiz zaten 2 ve 3.kutuya verdiğmiz margin değerlerini düşeceğiz
+  
+*/
+
+/*Kutular arası boşlukların ayarlanma mantığı
+
+En üstte 3 kutu var ilki 50% diğer 2 si 25% tir biz margin verirken önce tüm boşlukları margin right veya margin left ile verip
+kalan eksikleri en dıştaki padding ile çözmeliyiz ki mesela bir alt satır daki kutular ın tamamı 25% olduğu için üst ve alt kutuların hizalaması
+tam olmayabilir yani üstteki kutuların kendi arasında 2 aralığı varken alttaki 25% lik kutuların kendi arasında 3 tane boşluğu var 
+dolayısıyla buna göre biz sürekli bölme çarpma yerine şunu yapmalıyıd düz mantıkla her kutu arası 10px olmalı ve üstte verdiğimiz total margin 
+30px iken alttaki 40px olmalı ve üst ve altı hizalarken çıkarma işlemi ayrı ayrı hizalama ya göre düşünülmeli nasıl mesela üstte 50%lik kutu ile altta 
+2 tane 25%lik kutu tam aynı hiza da ancak 25%lik kutuların arasında boşlluk var bu da şu demektir ki biz alttaki 25% lik kutuların aralarına boşluk 
+bırakarak üstteki 50 lik ile aynı hizalamayı yapmalıyız.Bu yüzden biz tam hizalamaları düzgün yapmak için aralara 10 ar px verdik ve tüm kutuların margin
+left veya right ına 10 ar px verdik ve sadece en dıştaki section padding right vermemiz yetti  */
+/* li:nth-child(n+4):nth-child(-n+5) */ 
+/*5 ve 6. satır ve hep onun altındakileri seç demektir bu yani 5-6/9-10/13-14... */
+li:nth-child(n+4):not(:nth-child(4n+6)):not(:nth-child(4n+7))
+{
+
+	flex:0 0 calc(25% - var(--margin-1) );
+	margin-left:var(--margin-1);  
+}
+
+/*  li:nth-child(n+6):nth-child(-n+7)  */
+/*7 ve 8. satır ve hep onun altındakileri seç demektir bu yani 7-8/11-12/15-16... */
+li:nth-child(n+6):not(:nth-child(4n+4)):not(:nth-child(4n+5))
+ {
+	flex:0 0 calc(25% - var(--margin-1));
+	margin-left:var(--margin-1);  
+}
+/*Soru-Media screen lerde seçicileri kullanırken normal üstte kullandığımız kodlardaki seçicilerle çakışıyor ve onunla seçici önceliği açısından 
+aynı düzeye gelince uygulamaya koyuyor bundan dolayı ben aynı seçici yi yanyana 3 kez yadım ki seçicilik önceliğini kuvvetlendirsin ve 
+yazdığım kodu uygulasın diye*/
+/*12-13-14  */
+li:nth-child(-n+14):nth-child(n+12):not(:nth-child(-n+11)) {
+flex:0 0 calc(30% - var(--margin-1));
+margin-left:var(--margin-1);
+flex-grow: 2;
+
+}  
+/* Önemli bir nokta css önceliği ile ilgili olarak css kısmında seçicilerin üzerine gelindiği zaman 3 tane yanyna sayılar gözükür o sayıların
+çokluğu css önceliğini gösterir ve mesela nth ve not kullanrak yazılan css kodlarında eğer 2 tane nth kullanmış ve 1 not kullanmışsak bu css 
+kodları sonrasında kullanacğaımız bir tane nth ve bir tane not kodlarından öncelikli olacaktır bunu zaten css seçicilerinin üzerine gidince
+daha iyi anlarız bu yüzden kodlarımız uygulanmayabilir burda bunu css seçicilerinin üzerine gelerek sık sık kontrol etmeliyiz 
+
+*/
+
+@media only screen and (max-width:1050px) 
+{
+li:nth-child(-n+2):nth-child(n+2):not(:nth-child(n+3)) {
+
+	flex:0 0 calc(50% - var(--margin-1));
+}
+
+li:nth-child(n+2):nth-child(-n+14):not(:nth-child(-n+2)) {
+	flex:0 0 calc(33.333% - var(--margin-1));
+}
+}
+
+@media only screen and (max-width:750px)  {
+
+li:first-child:nth-child(-n+1):not(:nth-child(n+2)) {
+	flex:0 0 calc(100% - var(--margin-1)) ;
+}
+
+/*Soru-Media screen lerde seçicileri kullanırken normal üstte kullandığımız kodlardaki seçicilerle çakışıyor ve onunla seçici önceliği açısından 
+aynı düzeye gelince uygulamaya koyuyor bundan dolayı ben aynı seçici yi yanyana 3 kez yadım ki seçicilik önceliğini kuvvetlendirsin ve 
+yazdığım kodu uygulasın diye*/
+
+li:nth-child(n+2):nth-child(n+2):nth-child(n+2) {
+	flex:0 0 calc(50% - var(--margin-1));
+}
+}
