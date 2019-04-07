@@ -47,6 +47,7 @@ table {
 	border-spacing: 0;
 }
 /* Reset  */
+
 :root {
 	--margin-1:10px;
 	--margin-2:10px;
@@ -190,6 +191,7 @@ li:nth-child(-n+2):nth-child(n+2):not(:nth-child(n+3)) {
 li:nth-child(n+2):nth-child(-n+14):not(:nth-child(-n+2)) {
 	flex:0 0 calc(33.333% - var(--margin-1));
 }
+
 }
 
 @media only screen and (max-width:750px)  {
